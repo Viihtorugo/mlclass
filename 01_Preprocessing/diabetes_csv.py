@@ -16,6 +16,19 @@ import requests
 print('\n - Lendo o arquivo com o dataset sobre diabetes')
 data = pd.read_csv('diabetes_dataset.csv')
 
+# checando os valores nulos da base de dados
+print("\nContagens de tuplas nulas na variavel data\n")
+print(data.isnull().sum(), "\n")
+
+# limpando a base de dados
+nan = {"Glucose": 0.0, "BloodPressure": 0.0, "SkinThickness": 0, "Insulin": 0, "BMI": 0}
+data = data.fillna(nan)
+
+""""
+print("\nConfirmando a limpeza dos dados adicionado na variavel data_clean\n")
+print(data_clean.isnull().sum())
+"""
+
 # Criando X and y par ao algorítmo de aprendizagem de máquina.\
 print(' - Criando X e y para o algoritmo de aprendizagem a partir do arquivo diabetes_dataset')
 # Caso queira modificar as colunas consideradas basta algera o array a seguir.
@@ -39,7 +52,7 @@ y_pred = neigh.predict(data_app)
 URL = "https://aydanomachado.com/mlclass/01_Preprocessing.php"
 
 #TODO Substituir pela sua chave aqui
-DEV_KEY = "COLOCAR_SUA_KEY_AQUI"
+DEV_KEY = "GAV"
 
 # json para ser enviado para o servidor
 data = {'dev_key':DEV_KEY,
